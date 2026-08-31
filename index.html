@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiet Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" aria-label="Quiet Notes home"><span class="brand-mark">✦</span> Quiet Notes</a>
+        <button class="new-note" id="newNoteButton">+ New note <kbd>N</kbd></button>
+        <nav class="filters" aria-label="Note filters">
+          <button class="filter active" data-filter="all"><span>All notes</span><b id="allCount">0</b></button>
+          <button class="filter" data-filter="pinned"><span>⌖ Pinned</span><b id="pinnedCount">0</b></button>
+        </nav>
+        <div class="tag-list-wrap">
+          <p class="eyebrow">Tags</p>
+          <div id="tagList" class="tag-list"></div>
+        </div>
+        <p class="sidebar-footer">Your notes live privately in this browser.</p>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="viewLabel">Your notebook</p>
+            <h1 id="pageTitle">All notes</h1>
+          </div>
+          <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search notes..." /></label>
+        </header>
+        <section id="noteGrid" class="note-grid" aria-live="polite"></section>
+        <section id="emptyState" class="empty-state" hidden>
+          <div>✦</div><h2>No notes here yet</h2><p>Write down the thought before it slips away.</p>
+          <button class="new-note" id="emptyNewNote">Create a note</button>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="editorDialog" class="editor-dialog">
+      <form id="noteForm" method="dialog">
+        <header><p class="eyebrow" id="dialogLabel">New note</p><button class="close" type="button" id="closeDialog" aria-label="Close">×</button></header>
+        <input id="noteTitle" name="title" maxlength="90" placeholder="Note title" autocomplete="off" required />
+        <textarea id="noteBody" name="body" placeholder="Start writing..." required></textarea>
+        <label class="tags-field"><span>Tags</span><input id="noteTags" name="tags" placeholder="Ideas, Work, Personal" /></label>
+        <footer><button class="text-button" type="button" id="deleteButton" hidden>Delete note</button><span></span><button class="cancel" type="button" id="cancelButton">Cancel</button><button class="save" type="submit">Save note</button></footer>
+      </form>
+    </dialog>
+    <template id="noteTemplate">
+      <article class="note-card">
+        <button class="pin" title="Pin note" aria-label="Pin note">⌖</button>
+        <button class="card-body" aria-label="Edit note"><h2></h2><p class="excerpt"></p><div class="meta"><time></time><span class="card-tags"></span></div></button>
+      </article>
+    </template>
+    <script src="app.js"></script>
+  </body>
+</html>
