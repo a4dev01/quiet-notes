@@ -1,61 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiet Notes</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="app-shell">
-      <aside class="sidebar">
-        <a class="brand" href="#" aria-label="Quiet Notes home"><span class="brand-mark">✦</span> Quiet Notes</a>
-        <button class="new-note" id="newNoteButton">+ New note <kbd>N</kbd></button>
-        <nav class="filters" aria-label="Note filters">
-          <button class="filter active" data-filter="all"><span>All notes</span><b id="allCount">0</b></button>
-          <button class="filter" data-filter="pinned"><span>⌖ Pinned</span><b id="pinnedCount">0</b></button>
-        </nav>
-        <div class="tag-list-wrap">
-          <p class="eyebrow">Tags</p>
-          <div id="tagList" class="tag-list"></div>
-        </div>
-        <p class="sidebar-footer">Your notes live privately in this browser.</p>
-      </aside>
-
-      <section class="workspace">
-        <header class="topbar">
-          <div>
-            <p class="eyebrow" id="viewLabel">Your notebook</p>
-            <h1 id="pageTitle">All notes</h1>
-          </div>
-          <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search notes..." /></label>
-        </header>
-        <section id="noteGrid" class="note-grid" aria-live="polite"></section>
-        <section id="emptyState" class="empty-state" hidden>
-          <div>✦</div><h2>No notes here yet</h2><p>Write down the thought before it slips away.</p>
-          <button class="new-note" id="emptyNewNote">Create a note</button>
-        </section>
-      </section>
-    </main>
-
-    <dialog id="editorDialog" class="editor-dialog">
-      <form id="noteForm" method="dialog">
-        <header><p class="eyebrow" id="dialogLabel">New note</p><button class="close" type="button" id="closeDialog" aria-label="Close">×</button></header>
-        <input id="noteTitle" name="title" maxlength="90" placeholder="Note title" autocomplete="off" required />
-        <textarea id="noteBody" name="body" placeholder="Start writing..." required></textarea>
-        <label class="tags-field"><span>Tags</span><input id="noteTags" name="tags" placeholder="Ideas, Work, Personal" /></label>
-        <footer><button class="text-button" type="button" id="deleteButton" hidden>Delete note</button><span></span><button class="cancel" type="button" id="cancelButton">Cancel</button><button class="save" type="submit">Save note</button></footer>
-      </form>
-    </dialog>
-    <template id="noteTemplate">
-      <article class="note-card">
-        <button class="pin" title="Pin note" aria-label="Pin note">⌖</button>
-        <button class="card-body" aria-label="Edit note"><h2></h2><p class="excerpt"></p><div class="meta"><time></time><span class="card-tags"></span></div></button>
-      </article>
-    </template>
-    <script src="app.js"></script>
-  </body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f3ef"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css"><title>Quiet Notes</title></head><body>
+<div id="lock" hidden><div><b>✦</b><h1>Quiet Notes</h1><p id="lockText">Unlock your private notebook.</p><form id="unlock"><input id="password" type="password" placeholder="Master password" required><button>Unlock</button></form></div></div>
+<main id="app" hidden><aside id="side"><header><strong>✦ Quiet Notes</strong><button data-a="settings">⚙</button></header><button class="primary" data-a="new">＋ New note <kbd>N</kbd></button><nav><button data-v="all">All Notes <b id="allC"></b></button><button data-v="pinned">⌖ Pinned <b id="pinC"></b></button><button data-v="archive">▱ Archive <b id="arcC"></b></button><button data-v="trash">⌫ Trash <b id="trashC"></b></button></nav><p>Tags</p><div id="tagsList"></div><footer><button data-a="lock">⌑ Lock now</button><small>Private to this browser</small></footer></aside>
+<section id="list"><header><button class="mob" data-a="menu">☰</button><div><small id="eyebrow">YOUR NOTEBOOK</small><h1 id="viewTitle">All Notes</h1></div><button data-a="command">⌘</button></header><label class="search">⌕ <input id="search" placeholder="Search notes" aria-label="Search notes"><kbd>/</kbd></label><div id="notes"></div><div id="empty" hidden><h2>No notes yet</h2><p>Write down the thought before it slips away.</p><button class="primary" data-a="new">Create a note</button></div></section>
+<section id="edit"><header><button class="mob" data-a="back">‹</button><span id="status">Saved</span><button data-a="pin">⌖</button><button data-a="archive">▱</button><button data-a="duplicate">⧉</button><button data-a="trash">⌫</button><button data-a="focus">⛶</button></header><div id="noNote"><h2>Make room for your thoughts.</h2><button class="primary" data-a="new">Create a note</button></div><article id="editor" hidden><input id="title" placeholder="Untitled" maxlength="160"><textarea id="body" placeholder="Start writing…"></textarea><footer><input id="tags" placeholder="# Add tags (comma separated)"><span id="stats"></span></footer></article></section></main>
+<dialog id="modal"><form method="dialog"><header><h2 id="modalTitle"></h2><button>×</button></header><div id="modalBody"></div><footer id="modalFoot"></footer></form></dialog><dialog id="commands"><input id="commandSearch" placeholder="Type a command…"><div id="commandList"></div></dialog><div id="toast" hidden></div><script src="app.js"></script></body></html>
